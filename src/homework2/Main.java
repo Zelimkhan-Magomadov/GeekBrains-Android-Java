@@ -16,11 +16,9 @@ public class Main {
         // С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
         final int INTEGER_ARRAY_SIZE = 8;
         int[] integerArray = new int[INTEGER_ARRAY_SIZE];
-        int value = 0;
 
         for (int i = 0; i < integerArray.length; i++) {
-            integerArray[i] = value;
-            value += 3;
+            integerArray[i] = i * 3;
         }
 
         // 3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
@@ -36,13 +34,10 @@ public class Main {
         // и с помощью цикла(-ов) заполнить его диагональные элементы единицами;
         final int DEEP_ARRAY_SIZE = 5;
         int[][] deepArray = new int[DEEP_ARRAY_SIZE][DEEP_ARRAY_SIZE];
+        int lastIndex = deepArray.length - 1;
 
         for (int i = 0; i < deepArray.length; i++) {
-            deepArray[i][i] = 1;
-        }
-
-        for (int i = 0, j = deepArray.length - 1; i < deepArray.length; i++, j--) {
-            deepArray[i][j] = 1;
+            deepArray[i][i] = deepArray[i][lastIndex - i] = 1;
         }
 
         // 5. ** Задать одномерный массив и найти в нем минимальный и максимальный элементы
@@ -58,7 +53,7 @@ public class Main {
         // 7. **** Написать метод, которому на вход подается одномерный массив и число n
         // при этом метод должен сместить все элементымассива на n позиций.
         int[] integerArray5 = {1, 2, 3};
-        shiftElements(integerArray4, 1);
+        shiftElements(integerArray5, 3);
     }
 
     private static int getMinimumElement(int[] array) {
@@ -83,56 +78,64 @@ public class Main {
 
     private static boolean checkBalance(int[] array) {
         boolean balance = false;
+
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+
+        if (sum % 2 != 0) {
+            return false;
+        }
+
         int leftElementsSum = 0;
-
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length; i++) {
             leftElementsSum += array[i];
-            int rightElementsSum = 0;
+            sum -= array[i];
 
-            for (int j = i + 1; j < array.length; j++) {
-                rightElementsSum += array[j];
-
-                if (rightElementsSum > leftElementsSum) {
-                    break;
-                }
+            if (leftElementsSum > sum) {
+                break;
             }
-
-            if (rightElementsSum == leftElementsSum) {
+            if (sum == leftElementsSum) {
                 balance = true;
                 break;
             }
         }
+
         return balance;
     }
 
-    private static void shiftElements(int[] array, int shift) {
-        final int length = array.length;
+    private static void shiftElements(int[] array, int number) {
+        final int shiftNumber = Math.abs(number) % array.length;
 
-        if (shift > 0)
-            rightShift(array, shift, length);
-        else
-            leftShift(array, shift * -1, length);
+        if (shiftNumber == 0)
+            return;
+
+        if (number > 0)
+            rightShift(array, shiftNumber);
+        else if (number < 0)
+            leftShift(array, shiftNumber);
     }
 
-    private static void rightShift(int[] array, int shift, int length) {
-        for (int i = 0; i < shift; i++) {
-            int element = array[length - 1];
+    private static void rightShift(int[] array, int shiftNumber) {
+        for (int i = 0; i < shiftNumber; i++) {
+            int element = array[array.length - 1];
 
-            for (int j = length - 1; j > 0; j--) {
+            for (int j = array.length - 1; j > 0; j--) {
                 array[j] = array[j - 1];
             }
             array[0] = element;
         }
     }
 
-    private static void leftShift(int[] array, int shift, int length) {
-        for (int i = 0; i < shift; i++) {
+    private static void leftShift(int[] array, int shiftNumber) {
+        for (int i = 0; i < shiftNumber; i++) {
             int element = array[0];
 
-            for (int j = 0; j < length - 1; j++) {
+            for (int j = 0; j < array.length - 1; j++) {
                 array[j] = array[j + 1];
             }
-            array[length - 1] = element;
+            array[array.length - 1] = element;
         }
     }
 }
