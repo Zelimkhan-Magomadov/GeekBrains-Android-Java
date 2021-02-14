@@ -61,7 +61,6 @@ public class Main {
     private static String getUserWord() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ваша догатка: ");
-
         return scanner.nextLine().toLowerCase();
     }
 
@@ -112,7 +111,6 @@ public class Main {
         } while (userChoice < 0 || userChoice > 1);
 
         System.out.println();
-
         return userChoice == 1;
     }
 }
