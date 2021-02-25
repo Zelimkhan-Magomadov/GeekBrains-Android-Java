@@ -89,14 +89,14 @@ public class Employee {
     }
 
     public void getInfo() {
-        System.out.println("Last name: " + this.lastName);
-        System.out.println("First name: " + this.firstName);
-        System.out.println("Patronymic: " + this.patronymic);
-        System.out.println("Post: " + this.post);
-        System.out.println("Email: " + this.email);
-        System.out.println("Phone number: " + this.phoneNumber);
-        System.out.println("Salary: " + this.salary);
-        System.out.println("Age: " + this.age);
+        System.out.println("Last name: " + getLastName());
+        System.out.println("First name: " + getFirstName());
+        System.out.println("Patronymic: " + getPatronymic());
+        System.out.println("Post: " + getPost());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Phone number: " + getPhoneNumber());
+        System.out.println("Salary: " + getSalary());
+        System.out.println("Age: " + getAge());
         System.out.println();
     }
 }
