@@ -75,7 +75,7 @@ public class Main {
             if (scanner.hasNextInt())
                 return scanner.nextInt();
             else
-                scanner.nextLine();
+                scanner.next();
         } while (true);
     }
 

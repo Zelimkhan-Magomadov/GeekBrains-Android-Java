@@ -107,7 +107,7 @@ public class Main {
             if (scanner.hasNextInt())
                 userChoice = scanner.nextInt();
             else
-                scanner.nextLine();
+                scanner.next();
         } while (userChoice < 0 || userChoice > 1);
 
         System.out.println();
