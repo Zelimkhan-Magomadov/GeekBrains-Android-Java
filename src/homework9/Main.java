@@ -13,7 +13,8 @@ public class Main {
         // Throws an exception
         array[0][0] = "a";
         try {
-            testMethod(array);
+            long sum = testMethod(array);
+            System.out.println("Сумма элементов массива: " + sum);
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
@@ -21,7 +22,8 @@ public class Main {
         // Doesn't throw an exception
         array[0][0] = "21";
         try {
-            testMethod(array);
+            long sum = testMethod(array);
+            System.out.println("Сумма элементов массива: " + sum);
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
@@ -37,13 +39,12 @@ public class Main {
         }
     }
 
-    private static void testMethod(String[][] array) throws MyArraySizeException, MyArrayDataException {
+    private static long testMethod(String[][] array) throws MyArraySizeException, MyArrayDataException {
         if (array.length != 4 || array[0].length != 4) {
             throw new MyArraySizeException();
         }
 
-        long sum = getSum(array);
-        System.out.println("Сумма элементов массива: " + sum);
+        return getSum(array);
     }
 
     private static long getSum(String[][] array) throws MyArrayDataException {
