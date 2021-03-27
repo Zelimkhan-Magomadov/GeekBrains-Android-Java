@@ -29,7 +29,7 @@ public class Box<T extends Fruit> {
     }
 
     public boolean compare(Box<?> Box) {
-        return getWeight() == Box.getWeight();
+        return Math.abs(getWeight() - Box.getWeight()) < 0.0001;
     }
 
     public void pourFruitInto(Box<T> Box) {
